@@ -9,8 +9,7 @@ function App() {
 
   const handleCardClick = (index) => {
     if (clickedCards[index] === true) {
-      alert("Game Over!");
-      // handleGameOver()
+      handleGameOver();
     } else {
       const newClickedCards = [...clickedCards];
       newClickedCards[index] = !newClickedCards[index];
@@ -19,16 +18,20 @@ function App() {
     }
   };
 
-
   const checkRoundWin = () => {
-    if (clickedCards.every(card => card === true)) {
-      alert('win!');
+    if (clickedCards.every((card) => card === true)) {
+      alert("win!");
       setClickedCards(Array(clickedCards.length + 1).fill(false));
     }
-  }
+  };
 
-  useEffect(checkRoundWin, [clickedCards])
+  const handleGameOver = () => {
+    alert("Game Over!");
+    setClickedCards(Array(6).fill(false));
+    setScore(0);
+  };
 
+  useEffect(checkRoundWin, [clickedCards]);
 
   return (
     <div>

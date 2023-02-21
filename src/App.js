@@ -13,10 +13,23 @@ function App() {
     } else {
       const newClickedCards = [...clickedCards];
       newClickedCards[index] = !newClickedCards[index];
+      randomizeArray(newClickedCards)
       setClickedCards(newClickedCards);
       setScore(score + 1);
     }
   };
+
+  // this function came from chatGPT
+  function randomizeArray(array) {
+    // loop through array from last to first element
+    for (let i = array.length - 1; i > 0; i--) {
+      // generate a random index from 0 to i
+      const j = Math.floor(Math.random() * (i + 1));
+      // swap the current element with the randomly selected one
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
 
   const checkRoundWin = () => {
     if (clickedCards.every((card) => card === true)) {

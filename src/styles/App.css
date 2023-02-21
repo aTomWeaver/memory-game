@@ -1,6 +1,6 @@
 .card-ctr {
   display: flex;
-  max-width: 150px;
+  width: 150px;
   margin: 0px;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./components/Card";
 import "./styles/App.css";
 
@@ -18,6 +18,16 @@ function App() {
       setScore(score + 1);
     }
   };
+
+
+  const checkRoundWin = () => {
+    if (clickedCards.every(card => card === true)) {
+      alert('win!')
+    }
+  }
+
+  useEffect(checkRoundWin, [clickedCards])
+
 
   return (
     <div>

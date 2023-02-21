@@ -22,7 +22,8 @@ function App() {
 
   const checkRoundWin = () => {
     if (clickedCards.every(card => card === true)) {
-      alert('win!')
+      alert('win!');
+      setClickedCards(Array(clickedCards.length + 1).fill(false));
     }
   }
 

@@ -1,11 +1,11 @@
 import "../styles/App.css";
 
-function Card({ isClicked, handleCardClick }) {
+function Card({ isClicked, handleCardClick, color }) {
   return (
     <div
       className="card"
       style={{
-        backgroundColor: isClicked ? "#F3CDCD" : "#D0EFD5",
+        backgroundColor: isClicked ? color.clicked : color.unclicked,
       }}
       onClick={handleCardClick}
     ></div>

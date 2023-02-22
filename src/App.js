@@ -7,6 +7,10 @@ function App() {
   const [clickedCards, setClickedCards] = useState(Array(4).fill(false));
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [colors, setColors] = useState({
+    clicked: "#F3CDCD",
+    unclicked: "#D0EFD5",
+  });
 
   const handleCardClick = (index) => {
     if (clickedCards[index] === true) {
@@ -19,18 +23,6 @@ function App() {
       setScore(score + 1);
     }
   };
-
-  // this function came from chatGPT
-  function randomizeArray(array) {
-    // loop through array from last to first element
-    for (let i = array.length - 1; i > 0; i--) {
-      // generate a random index from 0 to i
-      const j = Math.floor(Math.random() * (i + 1));
-      // swap the current element with the randomly selected one
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
 
   const checkHighScore = () => {
     if (score > highScore) setHighScore(score);
@@ -51,27 +43,50 @@ function App() {
 
   useEffect(checkRoundWin, [clickedCards]);
   useEffect(checkHighScore, [score]);
+  useEffect(
+    () => {
+      colors.clicked === '#D0EFD5' ? 
+      setColors({ clicked: "#F3CDCD", unclicked: "#D0EFD5" }) :
+      setColors({ clicked: "#D0EFD5", unclicked: "#F3CDCD" }) 
+    },
+    [score]
+  );
 
   return (
     <div>
       <header className="header">
-        <h2>Score: {score}</h2>
-        <h2>High Score: {highScore}</h2>
+        <h2 className="score">Score: {score}</h2>
+        <h2 className="score">High Score: {highScore}</h2>
       </header>
 
       {/* here, the callback in array.map is taking parameters (currentValue, index) */}
-      <div className="card-ctr">
-        {clickedCards.map((isClicked, index) => (
-          <div key={index}>
-            <Card
-              isClicked={clickedCards[index]}
-              handleCardClick={() => handleCardClick(index)}
-            />
-          </div>
-        ))}
+      <div className="board">
+        <div className="card-ctr">
+          {clickedCards.map((isClicked, index) => (
+            <div key={index}>
+              <Card
+                isClicked={clickedCards[index]}
+                handleCardClick={() => handleCardClick(index)}
+                color={colors}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
+}
+
+// this function came from chatGPT
+function randomizeArray(array) {
+  // loop through array from last to first element
+  for (let i = array.length - 1; i > 0; i--) {
+    // generate a random index from 0 to i
+    const j = Math.floor(Math.random() * (i + 1));
+    // swap the current element with the randomly selected one
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 export default App;

@@ -1,6 +1,6 @@
 import "../styles/App.css";
 
-function Card({isClicked, handleCardClick}) {
+function Card({ isClicked, handleCardClick }) {
   return (
     <div
       className="card"
@@ -8,9 +8,7 @@ function Card({isClicked, handleCardClick}) {
         backgroundColor: isClicked ? "red" : "blue",
       }}
       onClick={handleCardClick}
-    >
-      {isClicked ? "Clicked!" : "Click me"}
-    </div>
+    ></div>
   );
 }
 

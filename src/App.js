@@ -6,6 +6,7 @@ function App() {
   // sets state to [false, false, false, false, false, false,]; these are the isClicked values
   const [clickedCards, setClickedCards] = useState(Array(6).fill(false));
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const handleCardClick = (index) => {
     if (clickedCards[index] === true) {
@@ -31,6 +32,10 @@ function App() {
     return array;
   }
 
+  const checkHighScore = () => {
+    if (score > highScore) setHighScore(score)
+  }
+
   const checkRoundWin = () => {
     if (clickedCards.every((card) => card === true)) {
       alert("win!");
@@ -45,10 +50,12 @@ function App() {
   };
 
   useEffect(checkRoundWin, [clickedCards]);
+  useEffect(checkHighScore, [score]);
 
   return (
     <div>
       <h2>Score: {score}</h2>
+      <h2>High Score: {highScore}</h2>
       {/* here, the callback in array.map is taking parameters (currentValue, index) */}
       <div className="card-ctr">
         {clickedCards.map((isClicked, index) => (

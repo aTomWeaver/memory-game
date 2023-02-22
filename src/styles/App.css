@@ -1,12 +1,17 @@
 .card-ctr {
-  display: flex;
-  width: 150px;
-  margin: 0px;
+  display: grid;
+  width: 912px;
+  gap: 10px;
+  justify-content: space-around;
+  grid-template-columns: auto auto auto auto;
+  background-color: #F3F3F3;
+  padding: 10px;
+  border-radius: 16px;
 }
 
 .card {
-  width: 150px;
-  height: 150px;
+  width: 191px;
+  height: 231px;
   user-select: none;
-  border: 1px solid rgb(255, 86, 86);
+  border-radius: 16px;
 }

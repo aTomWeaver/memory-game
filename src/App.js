@@ -4,7 +4,7 @@ import "./styles/App.css";
 
 function App() {
   // sets state to [false, false, false, false, false, false,]; these are the isClicked values
-  const [clickedCards, setClickedCards] = useState(Array(6).fill(false));
+  const [clickedCards, setClickedCards] = useState(Array(4).fill(false));
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
@@ -14,7 +14,7 @@ function App() {
     } else {
       const newClickedCards = [...clickedCards];
       newClickedCards[index] = !newClickedCards[index];
-      randomizeArray(newClickedCards)
+      randomizeArray(newClickedCards);
       setClickedCards(newClickedCards);
       setScore(score + 1);
     }
@@ -33,8 +33,8 @@ function App() {
   }
 
   const checkHighScore = () => {
-    if (score > highScore) setHighScore(score)
-  }
+    if (score > highScore) setHighScore(score);
+  };
 
   const checkRoundWin = () => {
     if (clickedCards.every((card) => card === true)) {
@@ -45,7 +45,7 @@ function App() {
 
   const handleGameOver = () => {
     alert("Game Over!");
-    setClickedCards(Array(6).fill(false));
+    setClickedCards(Array(4).fill(false));
     setScore(0);
   };
 
@@ -54,8 +54,11 @@ function App() {
 
   return (
     <div>
-      <h2>Score: {score}</h2>
-      <h2>High Score: {highScore}</h2>
+      <header className="header">
+        <h2>Score: {score}</h2>
+        <h2>High Score: {highScore}</h2>
+      </header>
+
       {/* here, the callback in array.map is taking parameters (currentValue, index) */}
       <div className="card-ctr">
         {clickedCards.map((isClicked, index) => (

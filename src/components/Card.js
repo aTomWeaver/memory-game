@@ -5,7 +5,7 @@ function Card({ isClicked, handleCardClick }) {
     <div
       className="card"
       style={{
-        backgroundColor: isClicked ? "red" : "blue",
+        backgroundColor: isClicked ? "#F3CDCD" : "#D0EFD5",
       }}
       onClick={handleCardClick}
     ></div>
